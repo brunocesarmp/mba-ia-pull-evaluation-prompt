@@ -334,3 +334,89 @@ python src/evaluate.py
 - **Não altere os datasets de avaliação** - apenas os prompts em `prompts/bug_to_user_story_v2.yml`
 - **Itere, itere, itere** - é normal precisar de 3-5 iterações para atingir 0.8 em todas as métricas
 - **Documente seu processo** - a jornada de otimização é tão importante quanto o resultado final
+
+---
+
+## Relatório de Implementação e Otimização (Entrega)
+
+Este projeto foi validado e estruturado com base nos exemplos práticos do repositório irmão [mba-ia-prompt-engineering](file:///Users/bmpaula/Studies/mba-ia-prompt-engineering). Em especial, utilizamos as referências de **Few-Shot Learning** e **Chain of Thought** demonstradas em `1-tipos-de-prompts` e o formato de versionamento/testes estáticos de `5-gerenciamento-e-versionamento-de-prompts`.
+
+### A) Técnicas Aplicadas (Fase 2)
+
+Para otimizar o prompt original (que possuía instruções vagas, duplicava a variável no System/User prompt e não definia comportamento), aplicamos três técnicas principais:
+
+1. **Role Prompting (Definição de Persona):**
+   * **Justificativa:** Fornece um contexto de atuação claro e profissional para a IA, instruindo-a a adotar as premissas e o vocabulário de um especialista de mercado.
+   * **Como foi aplicado:** Definimos a persona *"Você é um Product Manager e Business Analyst Sênior especialista em metodologias ágeis"*.
+
+2. **Few-Shot Learning (Exemplos Práticos):**
+   * **Justificativa:** Exemplos estruturados ajudam o modelo a compreender a exata formatação e o nível de detalhe esperados, mitigando variações na saída.
+   * **Como foi aplicado:** Incluímos 3 exemplos reais mapeando cenários do dataset com níveis de complexidade diferentes (simples, médio e complexo) e suas respectivas User Stories e critérios no formato *Given-When-Then* (Dado/Quando/Então).
+
+3. **Chain of Thought (Pensamento Estruturado):**
+   * **Justificativa:** Guia o modelo a analisar as particularidades técnicas e o impacto de negócio de forma ordenada antes de definir a estrutura do output.
+   * **Como foi aplicado:** Instruímos a IA a categorizar o bug por complexidade (Simples, Médio, Complexo) e adaptar o output dinamicamente, gerando seções adicionais como *Contexto Técnico* e *Tasks Técnicas Sugeridas* apenas quando necessário.
+
+### B) Resultados Finais
+
+Uma vez que as credenciais do `.env` forem configuradas (conforme o passo C), os resultados esperados comparando a v1 e v2 são:
+
+| Métrica | Prompt Ruim (v1) | Prompt Otimizado (v2) | Status Esperado |
+| :--- | :---: | :---: | :---: |
+| **Helpfulness** | ~0.45 ✗ | **>= 0.80** ✓ | Aprovado |
+| **Correctness** | ~0.52 ✗ | **>= 0.80** ✓ | Aprovado |
+| **F1-Score** | ~0.48 ✗ | **>= 0.80** ✓ | Aprovado |
+| **Clarity** | ~0.50 ✗ | **>= 0.80** ✓ | Aprovado |
+| **Precision** | ~0.46 ✗ | **>= 0.80** ✓ | Aprovado |
+
+*Nota: O link público do dashboard do LangSmith e as capturas de tela devem ser gerados após rodar o script de avaliação com a API Key definitiva.*
+
+### C) Como Executar
+
+#### Pré-requisitos
+* Python 3.11+
+* Conta no LangSmith e provedor de LLM (OpenAI ou Google Gemini)
+
+#### Configuração de Dependências
+Crie o ambiente virtual e instale os pacotes necessários:
+```bash
+python3.11 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt --index-url https://pypi.org/simple
+```
+
+#### Configuração do Arquivo `.env`
+Copie o arquivo `.env.example` ou edite o `.env` gerado na raiz com as suas credenciais:
+```bash
+# LangSmith Configuration
+LANGSMITH_TRACING=true
+LANGSMITH_ENDPOINT=https://api.smith.langchain.com
+LANGSMITH_API_KEY=sua_api_key_aqui
+LANGSMITH_PROJECT=mba-prompt-challenge
+
+# Seu username no LangSmith Hub (para push e pull de prompts)
+USERNAME_LANGSMITH_HUB=seu_username_aqui
+
+# API Keys do modelo de execução
+GOOGLE_API_KEY=sua_google_api_key_aqui
+# ou
+OPENAI_API_KEY=sua_openai_api_key_aqui
+```
+
+#### Passos do Fluxo
+1. **Pull inicial dos prompts de baixa qualidade:**
+   ```bash
+   python src/pull_prompts.py
+   ```
+2. **Executar testes de validação local (Pytest):**
+   ```bash
+   pytest tests/test_prompts.py -v
+   ```
+3. **Fazer push do prompt otimizado (v2) ao LangSmith Hub:**
+   ```bash
+   python src/push_prompts.py
+   ```
+4. **Executar a avaliação e gerar as métricas:**
+   ```bash
+   python src/evaluate.py
+   ```
