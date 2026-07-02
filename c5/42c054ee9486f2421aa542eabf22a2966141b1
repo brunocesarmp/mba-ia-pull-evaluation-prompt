@@ -1,0 +1,12 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.8",
+  "base_commit_sha": "c542c054ee9486f2421aa542eabf22a2966141b1",
+  "prompts": {},
+  "humans": {
+    "h_d072a574338fd7": {
+      "author": "Bruno de Paula <bruno.mpaula@mercadolivre.com>"
+    }
+  }
+}
