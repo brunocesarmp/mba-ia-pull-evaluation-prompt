@@ -78,18 +78,10 @@ Métricas Base:
 from langchain import hub  # Pull e Push de prompts
 from langsmith import Client  # Interação com LangSmith API
 from langsmith.evaluation import evaluate  # Avaliação de prompts
-from langchain_openai import ChatOpenAI  # LLM OpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI  # LLM Gemini
 ```
 
 ---
-
-## OpenAI
-
-- Crie uma **API Key** da OpenAI: https://platform.openai.com/api-keys
-- **Modelo de LLM para responder**: `gpt-4o-mini`
-- **Modelo de LLM para avaliação**: `gpt-4o`
-- **Custo estimado:** ~$1-5 para completar o desafio
 
 ## Gemini (modelo free)
 

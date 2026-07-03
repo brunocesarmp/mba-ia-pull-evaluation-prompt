@@ -277,18 +277,16 @@ def display_results(prompt_name: str, scores: Dict[str, float]) -> bool:
 def main():
     print_section_header("AVALIAÇÃO DE PROMPTS OTIMIZADOS")
 
-    provider = os.getenv("LLM_PROVIDER", "openai")
-    llm_model = os.getenv("LLM_MODEL", "gpt-4o-mini")
-    eval_model = os.getenv("EVAL_MODEL", "gpt-4o")
+    provider = os.getenv("LLM_PROVIDER", "google")
+    llm_model = os.getenv("LLM_MODEL", "gemini-2.5-flash")
+    eval_model = os.getenv("EVAL_MODEL", "gemini-2.5-flash")
 
     print(f"Provider: {provider}")
     print(f"Modelo Principal: {llm_model}")
     print(f"Modelo de Avaliação: {eval_model}\n")
 
     required_vars = ["LANGSMITH_API_KEY", "LLM_PROVIDER"]
-    if provider == "openai":
-        required_vars.append("OPENAI_API_KEY")
-    elif provider in ["google", "gemini"]:
+    if provider in ["google", "gemini"]:
         required_vars.append("GOOGLE_API_KEY")
 
     if not check_env_vars(required_vars):

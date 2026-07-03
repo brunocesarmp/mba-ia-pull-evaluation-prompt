@@ -175,38 +175,22 @@ def extract_json_from_response(response_text: str) -> Optional[Dict[str, Any]]:
 
 def get_llm(model: Optional[str] = None, temperature: float = 0.0):
     """
-    Retorna uma instância de LLM configurada baseada no provider.
+    Retorna uma instância de LLM configurada baseada no provider (apenas Google Gemini).
 
     Args:
         model: Nome do modelo (opcional, usa LLM_MODEL do .env por padrão)
         temperature: Temperatura para geração (padrão: 0.0 para determinístico)
 
     Returns:
-        Instância de ChatOpenAI ou ChatGoogleGenerativeAI
+        Instância de ChatGoogleGenerativeAI
 
     Raises:
         ValueError: Se provider não for suportado ou API key não configurada
     """
-    provider = os.getenv('LLM_PROVIDER', 'openai').lower()
-    model_name = model or os.getenv('LLM_MODEL', 'gpt-4o-mini')
+    provider = os.getenv('LLM_PROVIDER', 'google').lower()
+    model_name = model or os.getenv('LLM_MODEL', 'gemini-2.5-flash')
 
-    if provider == 'openai':
-        from langchain_openai import ChatOpenAI
-
-        api_key = os.getenv('OPENAI_API_KEY')
-        if not api_key:
-            raise ValueError(
-                "OPENAI_API_KEY não configurada no .env\n"
-                "Obtenha uma chave em: https://platform.openai.com/api-keys"
-            )
-
-        return ChatOpenAI(
-            model=model_name,
-            temperature=temperature,
-            api_key=api_key
-        )
-
-    elif provider == 'google':
+    if provider in ['google', 'gemini']:
         from langchain_google_genai import ChatGoogleGenerativeAI
 
         api_key = os.getenv('GOOGLE_API_KEY')
@@ -225,7 +209,7 @@ def get_llm(model: Optional[str] = None, temperature: float = 0.0):
     else:
         raise ValueError(
             f"Provider '{provider}' não suportado.\n"
-            f"Use 'openai' ou 'google' na variável LLM_PROVIDER do .env"
+            f"Use 'google' na variável LLM_PROVIDER do .env"
         )
 
 
