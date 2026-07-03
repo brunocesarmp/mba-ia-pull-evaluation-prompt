@@ -1,0 +1,14 @@
+src/evaluate.py
+  h_d072a574338fd7 280-282
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.9",
+  "base_commit_sha": "4fd2396f430908b4ba09f7683454d884bb533270",
+  "prompts": {},
+  "humans": {
+    "h_d072a574338fd7": {
+      "author": "Bruno de Paula <bruno.mpaula@mercadolivre.com>"
+    }
+  }
+}
