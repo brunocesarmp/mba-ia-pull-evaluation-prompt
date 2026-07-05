@@ -1,0 +1,14 @@
+prompts/bug_to_user_story_v2.yml
+  h_d072a574338fd7 2,4-185,187-189
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "771eabe889d243f0d43cda01829b5c25691a3044",
+  "prompts": {},
+  "humans": {
+    "h_d072a574338fd7": {
+      "author": "Bruno de Paula <bruno.mpaula@mercadolivre.com>"
+    }
+  }
+}
