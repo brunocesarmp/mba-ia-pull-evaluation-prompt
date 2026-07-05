@@ -1,0 +1,14 @@
+src/utils.py
+  h_d072a574338fd7 178,185,190-191,193-209,228
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "02e541dfa6a4ca4cbff92f08a667465e5053fd0f",
+  "prompts": {},
+  "humans": {
+    "h_d072a574338fd7": {
+      "author": "Bruno de Paula <bruno.mpaula@mercadolivre.com>"
+    }
+  }
+}
