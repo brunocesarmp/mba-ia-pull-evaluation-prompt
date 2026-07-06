@@ -1,0 +1,16 @@
+.env.example
+  h_d072a574338fd7 15-16
+README.md
+  h_d072a574338fd7 123,129,131,163,165,210,212,252
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e9de5bfbdb62842044f35efa9d31b5e1c7170714",
+  "prompts": {},
+  "humans": {
+    "h_d072a574338fd7": {
+      "author": "Bruno de Paula <bruno.mpaula@mercadolivre.com>"
+    }
+  }
+}
