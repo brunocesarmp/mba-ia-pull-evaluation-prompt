@@ -120,17 +120,15 @@ Após diversas iterações de melhoria dos prompts foi possível elevar signific
 
 **Link público:**
 
-<INSERIR LINK DO DASHBOARD>
+https://smith.langchain.com/public/bc61ba98-650e-47f1-adeb-d794e35852a5/d
 
 ---
 
 ## Evidências
 
-Adicionar nesta seção:
+A imagem abaixo apresenta a execução da avaliação dos prompts, demonstrando que todos os critérios atingiram nota mínima igual ou superior a **0.80**.
 
-* Screenshot do Dataset contendo os 15 exemplos.
-* Screenshot das avaliações com notas superiores a 0.80.
-* Screenshot do Tracing mostrando pelo menos três execuções.
+![alt text](evaluate-result.png)
 
 ---
 
@@ -162,9 +160,9 @@ Adicionar nesta seção:
 ## Clonar o projeto
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone https://github.com/brunocesarmp/mba-ia-pull-evaluation-prompt.git
 
-cd <PASTA_DO_PROJETO>
+cd mba-ia-pull-evaluation-prompt
 ```
 
 ---
@@ -209,22 +207,14 @@ LANGSMITH_TRACING=true
 
 LANGSMITH_PROJECT=<NOME_DO_PROJETO>
 
-LLM_MODEL=gemini-2.5-flash-lite
+LLM_MODEL=gemini-3.1-flash-lite
 
-EVAL_MODEL=gemini-2.5-flash-lite
+EVAL_MODEL=gemini-3.1-flash-lite
 ```
 
 ---
 
 ## Executar o projeto
-
-### Executar geração das User Stories
-
-```bash
-python main.py
-```
-
----
 
 ### Executar avaliações
 
@@ -259,7 +249,7 @@ O dashboard público deverá conter:
 
 * Python
 * LangChain
-* Google Gemini 2.5 Flash Lite
+* Google Gemini 3.1 Flash Lite
 * LangSmith
 * dotenv
 
