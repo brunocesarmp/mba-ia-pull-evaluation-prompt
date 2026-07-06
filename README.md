@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-Este projeto tem como objetivo refatorar prompts utilizando técnicas avançadas de Prompt Engineering, avaliando sua qualidade através de métricas automatizadas e registrando todos os experimentos utilizando o LangSmith.
+Este projeto tem como objetivo refatorar prompts utilizando técnicas avançadas de Prompt Engineering, avaliando sua qualidade através de métricas automatizadas.
 
 Foram aplicadas diversas técnicas para aumentar a qualidade das respostas geradas pelo modelo, buscando atingir nota mínima de **0.80** em todas as avaliações.
 
@@ -229,8 +229,6 @@ python evaluate.py
 Os resultados podem ser visualizados:
 
 * No terminal.
-* No dashboard do LangSmith.
-* Nos arquivos de saída gerados pelo projeto.
 
 ---
 
